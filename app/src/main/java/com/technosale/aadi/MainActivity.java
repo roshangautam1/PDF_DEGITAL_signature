@@ -194,7 +194,6 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("StaticFieldLeak")
     private void sign(final String alias, final String reason, final String location) {
-
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected void onPostExecute(Void aVoid) {
@@ -205,20 +204,14 @@ public class MainActivity extends AppCompatActivity {
                 i.putExtra("uri", f);
                 startActivity(i);
             }
-
             @TargetApi(Build.VERSION_CODES.M)
             @Override
             protected Void doInBackground(Void... params) {
                 PrivateKey privateKey;
                 try {
-
                     privateKey = KeyChain.getPrivateKey(getApplicationContext(), alias);
-
-
                     KeyFactory keyStore =
                             KeyFactory.getInstance(privateKey.getAlgorithm(), "AndroidKeyStore");
-
-
                     Certificate[] chain = KeyChain.getCertificateChain(getApplicationContext(), alias);
 
                     BouncyCastleProvider provider = new BouncyCastleProvider();
